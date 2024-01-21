@@ -13,34 +13,36 @@ class ExpenseItem extends StatelessWidget {
       child: Row(
         children: [
           Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(expense.title),
-              SizedBox(
+              const SizedBox(
                 height: 4,
               ),
+              Text('\$${expense.amount.toStringAsFixed(2)}'),
+            ],
+          ),
+          const Spacer(),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
               Row(
                 children: [
                   Icon(categoryIcons[expense.category]),
-                  SizedBox(
-                    width: 4,
+                  const SizedBox(
+                    width: 6,
                   ),
                   Text(expense.category.toString()),
                 ],
-              )
-            ],
-          ),
-          Spacer(),
-          Column(
-            children: [
-              Text('\$${expense.amount.toStringAsFixed(2)}'),
-              SizedBox(
+              ),
+              const SizedBox(
                 height: 4,
               ),
               Row(
                 children: [
-                  Icon(Icons.calendar_today),
-                  SizedBox(
-                    width: 4,
+                  const Icon(Icons.calendar_today),
+                  const SizedBox(
+                    width: 6,
                   ),
                   Text(expense.formattedDate),
                 ],
