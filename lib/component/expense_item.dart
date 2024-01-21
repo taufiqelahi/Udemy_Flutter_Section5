@@ -20,7 +20,7 @@ class ExpenseItem extends StatelessWidget {
               ),
               Row(
                 children: [
-                  Icon(Icons.calendar_today),
+                  Icon(categoryIcons[expense.category]),
                   SizedBox(
                     width: 4,
                   ),
@@ -42,7 +42,7 @@ class ExpenseItem extends StatelessWidget {
                   SizedBox(
                     width: 4,
                   ),
-                  Text(expense.date.toString()),
+                  Text(expense.formattedDate),
                 ],
               )
             ],
