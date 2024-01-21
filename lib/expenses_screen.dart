@@ -1,3 +1,4 @@
+import 'package:expense_tracker/component/expense_list.dart';
 import 'package:expense_tracker/model/expense.dart';
 import 'package:flutter/material.dart';
 
@@ -18,11 +19,15 @@ class _ExpensesScreenState extends State<ExpensesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Expenses'),
-      ),
-      body: const Center(
-        child: Text('Expenses'),
+
+      body:Center(
+        child: Column(
+          children: [
+            const Text('Expenses'),
+
+            Expanded(child: ExpenseList(expenses: _expenses ))
+          ],
+        ),
       ),
     );
   }

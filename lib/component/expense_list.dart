@@ -15,6 +15,7 @@ class ExpenseList extends StatelessWidget {
           title: Text(expense.title),
           subtitle: Text(expense.category.toString()),
           trailing: Text(expense.amount.toString()),
+
         );
       },
     );
