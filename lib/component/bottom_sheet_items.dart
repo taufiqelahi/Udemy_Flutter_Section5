@@ -9,19 +9,38 @@ class BottomSheetItems extends StatefulWidget {
 }
 
 class _BottomSheetItemsState extends State<BottomSheetItems> {
+  TextEditingController _titleController = TextEditingController();
+  TextEditingController _amountController = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.all(16),
+    return  Padding(
+      padding: const EdgeInsets.all(16),
       child: Column(
         children: [
           TextField(
+            controller: _titleController,
             maxLength: 20,
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               labelText: 'Title',
 
             ),
           ),
+          TextField(
+            controller: _amountController,
+           keyboardType: TextInputType.number,
+            decoration: const InputDecoration(
+              labelText: 'Amount',
+              prefixText: '\$',
+
+
+            ),
+          ),
+          Row(
+            children: [
+              TextButton(onPressed: (){}, child: const Text('Cancel')),
+              ElevatedButton(onPressed: (){}, child: const Text('Save'))
+            ],
+          )
         ],
       ),
     );
