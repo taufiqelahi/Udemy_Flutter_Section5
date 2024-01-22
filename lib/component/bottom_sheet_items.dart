@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class BottomSheetItems extends StatefulWidget {
   const BottomSheetItems({super.key});
@@ -9,11 +10,32 @@ class BottomSheetItems extends StatefulWidget {
 }
 
 class _BottomSheetItemsState extends State<BottomSheetItems> {
-  TextEditingController _titleController = TextEditingController();
-  TextEditingController _amountController = TextEditingController();
+  final TextEditingController _titleController = TextEditingController();
+  final TextEditingController _amountController = TextEditingController();
+   DateTime? selectedDate;
+  void datePicker() async{
+    final now=DateTime.now();
+    final firstDate=DateTime(now.year-1,now.month,now.day);
+   final date= await showDatePicker(
+        context: context,
+        initialDate:now,
+        firstDate:firstDate,
+        lastDate: now);
+   setState(() {
+      selectedDate=date;
+   });
+  }
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    _titleController.dispose();
+    _amountController.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return  Padding(
+    return Padding(
       padding: const EdgeInsets.all(16),
       child: Column(
         children: [
@@ -22,23 +44,48 @@ class _BottomSheetItemsState extends State<BottomSheetItems> {
             maxLength: 20,
             decoration: const InputDecoration(
               labelText: 'Title',
-
-            ),
-          ),
-          TextField(
-            controller: _amountController,
-           keyboardType: TextInputType.number,
-            decoration: const InputDecoration(
-              labelText: 'Amount',
-              prefixText: '\$',
-
-
             ),
           ),
           Row(
             children: [
-              TextButton(onPressed: (){}, child: const Text('Cancel')),
-              ElevatedButton(onPressed: (){}, child: const Text('Save'))
+              Expanded(
+                child: TextField(
+                  controller: _amountController,
+                  keyboardType: TextInputType.number,
+                  decoration: const InputDecoration(
+                    labelText: 'Amount',
+                    prefixText: '\$',
+                  ),
+                ),
+              ),
+              const SizedBox(
+                width: 16,
+              ),
+              Expanded(
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Text(selectedDate==null?'No Date Chosen':DateFormat('dd/MM/yyyy').format(selectedDate!)),
+                    const SizedBox(
+                      width: 6,
+                    ),
+                    IconButton(
+                        onPressed: datePicker,
+                        icon: const Icon(Icons.calendar_today)),
+                  ],
+                ),
+              )
+            ],
+          ),
+          Row(
+            children: [
+              TextButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: const Text('Cancel')),
+              ElevatedButton(onPressed: () {}, child: const Text('Save'))
             ],
           )
         ],
