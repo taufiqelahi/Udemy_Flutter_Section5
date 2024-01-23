@@ -10,7 +10,7 @@ class BottomSheetItems extends StatefulWidget {
 }
 
 class _BottomSheetItemsState extends State<BottomSheetItems> {
-  Categories categories=Categories.work;
+  Categories categories = Categories.work;
   final TextEditingController _titleController = TextEditingController();
   final TextEditingController _amountController = TextEditingController();
   DateTime? selectedDate;
@@ -85,24 +85,47 @@ class _BottomSheetItemsState extends State<BottomSheetItems> {
           Row(
             children: [
               DropdownButton(
-                value: categories,
+                  value: categories,
                   items: Categories.values
-                      .map((e) => DropdownMenuItem(
-                          value: e, child: Text(e.name)))
+                      .map((e) =>
+                          DropdownMenuItem(value: e, child: Text(e.name)))
                       .toList(),
                   onChanged: (v) {
-                  setState(() {
-                    categories=v!;
-                  });
-
-
+                    setState(() {
+                      categories = v!;
+                    });
                   }),
+              Spacer(),
               TextButton(
                   onPressed: () {
                     Navigator.pop(context);
                   },
                   child: const Text('Cancel')),
-              ElevatedButton(onPressed: () {}, child: const Text('Save'))
+              ElevatedButton(
+                  onPressed: () {
+                    final enterAmount = double.tryParse(_amountController.text);
+                    final invalidAmaout =
+                        enterAmount == null || enterAmount <= 0;
+                    if (_titleController.text.trim().isEmpty || invalidAmaout) {
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            title: Text('invalid Input'),
+                            actions: [
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                child: Text('Okay'),
+                              )
+                            ],
+                          );
+                        },
+                      );
+                    }
+                  },
+                  child: const Text('Save'))
             ],
           )
         ],
