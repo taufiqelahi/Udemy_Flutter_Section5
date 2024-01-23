@@ -5,13 +5,13 @@ import 'package:uuid/uuid.dart';
 final uuid = Uuid();
 
 const categoryIcons = {
-  Category.food: Icons.dinner_dining,
-  Category.travel: Icons.flight,
-  Category.leisure: Icons.movie,
-  Category.work: Icons.work,
+  Categories.food: Icons.dinner_dining,
+  Categories.travel: Icons.flight,
+  Categories.leisure: Icons.movie,
+  Categories.work: Icons.work,
 };
 
-enum Category {
+enum Categories {
   food,
   travel,
   leisure,
@@ -23,7 +23,7 @@ class Expense {
   final String title;
   final double amount;
   final DateTime date;
-  final Category category;
+  final Categories category;
   Expense({
     required this.title,
     required this.category,

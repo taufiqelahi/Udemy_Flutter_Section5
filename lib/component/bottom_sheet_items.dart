@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'package:expense_tracker/model/expense.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -10,21 +10,23 @@ class BottomSheetItems extends StatefulWidget {
 }
 
 class _BottomSheetItemsState extends State<BottomSheetItems> {
+  Categories categories=Categories.work;
   final TextEditingController _titleController = TextEditingController();
   final TextEditingController _amountController = TextEditingController();
-   DateTime? selectedDate;
-  void datePicker() async{
-    final now=DateTime.now();
-    final firstDate=DateTime(now.year-1,now.month,now.day);
-   final date= await showDatePicker(
+  DateTime? selectedDate;
+  void datePicker() async {
+    final now = DateTime.now();
+    final firstDate = DateTime(now.year - 1, now.month, now.day);
+    final date = await showDatePicker(
         context: context,
-        initialDate:now,
-        firstDate:firstDate,
+        initialDate: now,
+        firstDate: firstDate,
         lastDate: now);
-   setState(() {
-      selectedDate=date;
-   });
+    setState(() {
+      selectedDate = date;
+    });
   }
+
   @override
   void dispose() {
     // TODO: implement dispose
@@ -66,7 +68,9 @@ class _BottomSheetItemsState extends State<BottomSheetItems> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    Text(selectedDate==null?'No Date Chosen':DateFormat('dd/MM/yyyy').format(selectedDate!)),
+                    Text(selectedDate == null
+                        ? 'No Date Chosen'
+                        : DateFormat('dd/MM/yyyy').format(selectedDate!)),
                     const SizedBox(
                       width: 6,
                     ),
@@ -80,6 +84,19 @@ class _BottomSheetItemsState extends State<BottomSheetItems> {
           ),
           Row(
             children: [
+              DropdownButton(
+                value: categories,
+                  items: Categories.values
+                      .map((e) => DropdownMenuItem(
+                          value: e, child: Text(e.name)))
+                      .toList(),
+                  onChanged: (v) {
+                  setState(() {
+                    categories=v!;
+                  });
+
+
+                  }),
               TextButton(
                   onPressed: () {
                     Navigator.pop(context);

@@ -12,8 +12,8 @@ class ExpensesScreen extends StatefulWidget {
 
 class _ExpensesScreenState extends State<ExpensesScreen> {
   final List<Expense> _expenses = [
-    Expense(title: 'Flutter udemy Course', category: Category.work, amount: 12.99, date: DateTime.now()),
-    Expense(title: 'New Desk', category: Category.leisure, amount: 99.99, date: DateTime.now()),
+    Expense(title: 'Flutter udemy Course', category: Categories.work, amount: 12.99, date: DateTime.now()),
+    Expense(title: 'New Desk', category: Categories.leisure, amount: 99.99, date: DateTime.now()),
 
 
   ];
