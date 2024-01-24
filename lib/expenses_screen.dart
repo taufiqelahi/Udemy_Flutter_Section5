@@ -42,12 +42,20 @@ class _ExpensesScreenState extends State<ExpensesScreen> {
   }
 
   removeExpense(Expense expense) {
+    final index=_expenses.indexOf(expense);
     setState(() {
       _expenses.remove(expense);
     });
+    ScaffoldMessenger.of(context).clearSnackBars();
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      duration: Duration(seconds: 5),
       content: const Text('Expense deleted'),
-      action: SnackBarAction(label: 'Undo', onPressed: () {}),
+      action: SnackBarAction(label: 'Undo', onPressed: () {
+        setState(() {
+          _expenses.insert(index,expense);
+
+        });
+      }),
     ));
   }
 
