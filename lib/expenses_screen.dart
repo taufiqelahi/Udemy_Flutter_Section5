@@ -12,16 +12,45 @@ class ExpensesScreen extends StatefulWidget {
 
 class _ExpensesScreenState extends State<ExpensesScreen> {
   final List<Expense> _expenses = [
-    Expense(title: 'Flutter udemy Course', category: Categories.work, amount: 12.99, date: DateTime.now()),
-    Expense(title: 'New Desk', category: Categories.leisure, amount: 99.99, date: DateTime.now()),
-
-
+    Expense(
+        title: 'Flutter udemy Course',
+        category: Categories.work,
+        amount: 12.99,
+        date: DateTime.now()),
+    Expense(
+        title: 'New Desk',
+        category: Categories.leisure,
+        amount: 99.99,
+        date: DateTime.now()),
   ];
-  void openAndAddExpense(){
-    showModalBottomSheet(context: context, builder: (BuildContext context) {
-      return const BottomSheetItems();
-    },);
+  void openAndAddExpense() {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      builder: (BuildContext context) {
+        return BottomSheetItems(
+          getExpanse: addExpense,
+        );
+      },
+    );
   }
+
+  addExpense(Expense expense) {
+    setState(() {
+      _expenses.add(expense);
+    });
+  }
+
+  removeExpense(Expense expense) {
+    setState(() {
+      _expenses.remove(expense);
+    });
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      content: const Text('Expense deleted'),
+      action: SnackBarAction(label: 'Undo', onPressed: () {}),
+    ));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,15 +64,18 @@ class _ExpensesScreenState extends State<ExpensesScreen> {
           )
         ],
       ),
-
-      body:Center(
-        child: Column(
-          children: [
-            const Text('Expenses'),
-
-            Expanded(child: ExpenseList(expenses: _expenses ))
-          ],
-        ),
+      body: Column(
+        children: [
+          const Text('Expenses'),
+          Expanded(
+              child: _expenses.isNotEmpty
+                  ? ExpenseList(
+                      expenses: _expenses,
+                      onRemove: removeExpense,
+                    )
+                  : const Center(
+                      child: Text('No Expanse Avilable ,Add your Expense')))
+        ],
       ),
     );
   }
