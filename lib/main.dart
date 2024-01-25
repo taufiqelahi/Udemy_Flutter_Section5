@@ -19,6 +19,10 @@ class MyApp extends StatelessWidget {
         appBarTheme: AppBarTheme(
           backgroundColor: kColorSchema.primaryContainer,
           foregroundColor: kColorSchema.onPrimaryContainer
+        ),
+        cardTheme: CardTheme().copyWith(
+          color: kColorSchema.secondaryContainer,
+          margin: EdgeInsets.symmetric(horizontal: 16,vertical: 6),
         )
       ),
       home: const ExpensesScreen(),
