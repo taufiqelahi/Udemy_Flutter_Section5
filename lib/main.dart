@@ -22,7 +22,33 @@ class MyApp extends StatelessWidget {
         ),
         cardTheme: CardTheme().copyWith(
           color: kColorSchema.secondaryContainer,
+
           margin: EdgeInsets.symmetric(horizontal: 16,vertical: 6),
+        ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: kColorSchema.primaryContainer,
+
+          ),
+
+        ),
+        textTheme: TextTheme().copyWith(
+          titleLarge: TextStyle(
+            fontSize: 14,
+            fontWeight: FontWeight.normal,
+            color: kColorSchema.onSecondaryContainer
+
+          ),
+
+          bodyMedium: TextStyle(
+            fontSize: 14,
+            fontWeight: FontWeight.normal,
+            color: kColorSchema.onSecondaryContainer,
+
+          ),
+
+
+
         )
       ),
       home: const ExpensesScreen(),
