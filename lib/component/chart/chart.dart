@@ -1,3 +1,4 @@
+import 'package:expense_tracker/component/chart/chart_bar.dart';
 import 'package:expense_tracker/model/expense.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
