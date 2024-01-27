@@ -41,6 +41,20 @@ class MyApp extends StatelessWidget {
               fontWeight: FontWeight.normal,
               color: darkColorSchema.onSecondaryContainer,
             ),
+            titleMedium:  TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.normal,
+                color: darkColorSchema.onSecondaryContainer),
+            bodyLarge:  TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.normal,
+                color: darkColorSchema.onSecondaryContainer),
+            bodySmall:  TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.normal,
+                color: darkColorSchema.onSecondaryContainer),
+
+
           )),
       theme: ThemeData().copyWith(
           colorScheme: kColorSchema,
@@ -49,6 +63,7 @@ class MyApp extends StatelessWidget {
               foregroundColor: kColorSchema.onPrimaryContainer),
           cardTheme: CardTheme().copyWith(
             color: kColorSchema.secondaryContainer,
+
             margin: EdgeInsets.symmetric(horizontal: 16, vertical: 6),
           ),
           elevatedButtonTheme: ElevatedButtonThemeData(
@@ -66,7 +81,21 @@ class MyApp extends StatelessWidget {
               fontWeight: FontWeight.normal,
               color: kColorSchema.onSecondaryContainer,
             ),
+      titleMedium:  TextStyle(
+          fontSize: 14,
+          fontWeight: FontWeight.normal,
+          color: kColorSchema.onSecondaryContainer),
+      bodyLarge:  TextStyle(
+          fontSize: 14,
+          fontWeight: FontWeight.normal,
+          color: kColorSchema.onSecondaryContainer),
+            bodySmall:  TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.normal,
+                color: kColorSchema.onSecondaryContainer),
           )),
+
+
       themeMode: ThemeMode.system,
       home: const ExpensesScreen(),
     );
