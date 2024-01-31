@@ -1,5 +1,6 @@
 import 'package:expense_tracker/component/bottom_sheet_items.dart';
 import 'package:expense_tracker/component/chart/chart.dart';
+import 'package:expense_tracker/component/chart/chart_bar.dart';
 import 'package:expense_tracker/component/expense_list.dart';
 import 'package:expense_tracker/model/expense.dart';
 import 'package:flutter/material.dart';
@@ -75,7 +76,7 @@ class _ExpensesScreenState extends State<ExpensesScreen> {
       ),
       body: Column(
         children: [
-      Chart(expenses: _expenses),
+Chart(expenses: _expenses),
           Expanded(
               child: _expenses.isNotEmpty
                   ? ExpenseList(

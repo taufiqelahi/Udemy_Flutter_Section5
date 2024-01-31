@@ -35,7 +35,11 @@ class Expense {
   String get formattedDate {
     return DateFormat.yMd().format(date);
   }
+
 }
+
+
+
 class ExpenseBucket {
   const ExpenseBucket({
     required this.category,
@@ -53,10 +57,13 @@ class ExpenseBucket {
   double get totalExpenses {
     double sum = 0;
 
-    for (final expense in expenses) {
-      sum += expense.amount; // sum = sum + expense.amount
-    }
 
+    for (final expense in expenses) {
+      sum += expense.amount;// sum = sum + expense.amount
+   print("${expense.category}- ${expense.amount}");
+    }
+    print(sum);
     return sum;
+
   }
 }

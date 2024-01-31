@@ -1,9 +1,50 @@
+// import 'package:expense_tracker/component/chart/chart_bar.dart';
+// import 'package:expense_tracker/model/expense.dart';
+// import 'package:flutter/cupertino.dart';
+// import 'package:flutter/material.dart';
+//
+// class Chart extends StatelessWidget {
+//   const Chart({super.key, required this.expenses});
+//   final List<Expense> expenses;
+//
+//   double get totalAmount {
+//     double sum = 0;
+//
+//     for (var e in expenses) {
+//       sum = sum + e.amount;
+//     }
+//
+//     return sum;
+//   }
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container(
+//       height: 180,
+//       width: double.infinity,
+//       child: Column(
+//         children: [
+//           Expanded(
+//             child: Row(
+//                 children: expenses
+//                     .map((e) => ChartBar(
+//                         fill:  e.amount / totalAmount))
+//                     .toList()),
+//           ),
+//           Row(
+//             children: Categories.values
+//                 .map((e) => Expanded(child: Icon(categoryIcons[e])))
+//                 .toList(),
+//           )
+//         ],
+//       ),
+//     );
+//   }
+// }
+
 import 'package:expense_tracker/component/chart/chart_bar.dart';
 import 'package:expense_tracker/model/expense.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-
-
 
 class Chart extends StatelessWidget {
   const Chart({super.key, required this.expenses});
@@ -12,21 +53,26 @@ class Chart extends StatelessWidget {
 
   List<ExpenseBucket> get buckets {
     return [
-      ExpenseBucket.forCategory(expenses, Categories.food),
+     ExpenseBucket.forCategory(expenses, Categories.food),
       ExpenseBucket.forCategory(expenses, Categories.leisure),
       ExpenseBucket.forCategory(expenses, Categories.travel),
       ExpenseBucket.forCategory(expenses, Categories.work),
+
     ];
   }
 
   double get maxTotalExpense {
     double maxTotalExpense = 0;
 
+
     for (final bucket in buckets) {
+
       if (bucket.totalExpenses > maxTotalExpense) {
         maxTotalExpense = bucket.totalExpenses;
+
       }
     }
+
 
     return maxTotalExpense;
   }
@@ -62,6 +108,7 @@ class Chart extends StatelessWidget {
               children: [
                 for (final bucket in buckets) // alternative to map()
                   ChartBar(
+
                     fill: bucket.totalExpenses == 0
                         ? 0
                         : bucket.totalExpenses / maxTotalExpense,
@@ -74,20 +121,20 @@ class Chart extends StatelessWidget {
             children: buckets
                 .map(
                   (bucket) => Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 4),
-                  child: Icon(
-                    categoryIcons[bucket.category],
-                    color: isDarkMode
-                        ? Theme.of(context).colorScheme.secondary
-                        : Theme.of(context)
-                        .colorScheme
-                        .primary
-                        .withOpacity(0.7),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 4),
+                      child: Icon(
+                        categoryIcons[bucket.category],
+                        color: isDarkMode
+                            ? Theme.of(context).colorScheme.secondary
+                            : Theme.of(context)
+                                .colorScheme
+                                .primary
+                                .withOpacity(0.7),
+                      ),
+                    ),
                   ),
-                ),
-              ),
-            )
+                )
                 .toList(),
           )
         ],

@@ -1,3 +1,4 @@
+import 'package:expense_tracker/component/chart/chart_bar.dart';
 import 'package:expense_tracker/expenses_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -7,6 +8,7 @@ var darkColorSchema =
     ColorScheme.fromSeed(seedColor: Color.fromARGB(255, 5, 99, 125));
 
 void main() {
+
   runApp(const MyApp());
 }
 
@@ -97,7 +99,7 @@ class MyApp extends StatelessWidget {
 
 
       themeMode: ThemeMode.system,
-      home: const ExpensesScreen(),
+      home: ExpensesScreen(),
     );
   }
 }
