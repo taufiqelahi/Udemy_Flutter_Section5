@@ -44,7 +44,7 @@ class _ExpensesScreenState extends State<ExpensesScreen> {
   }
 
   removeExpense(Expense expense) {
-    final index=_expenses.indexOf(expense);
+    final index = _expenses.indexOf(expense);
     setState(() {
       _expenses.remove(expense);
     });
@@ -52,17 +52,20 @@ class _ExpensesScreenState extends State<ExpensesScreen> {
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
       duration: Duration(seconds: 5),
       content: const Text('Expense deleted'),
-      action: SnackBarAction(label: 'Undo', onPressed: () {
-        setState(() {
-          _expenses.insert(index,expense);
-
-        });
-      }),
+      action: SnackBarAction(
+          label: 'Undo',
+          onPressed: () {
+            setState(() {
+              _expenses.insert(index, expense);
+            });
+          }),
     ));
   }
 
   @override
   Widget build(BuildContext context) {
+    final width=MediaQuery.of(context).size.width;
+    print(width);
     return Scaffold(
       appBar: AppBar(
         centerTitle: false,
@@ -74,9 +77,9 @@ class _ExpensesScreenState extends State<ExpensesScreen> {
           )
         ],
       ),
-      body: Column(
+      body:width<600? Column(
         children: [
-Chart(expenses: _expenses),
+          Chart(expenses: _expenses),
           Expanded(
               child: _expenses.isNotEmpty
                   ? ExpenseList(
@@ -85,6 +88,18 @@ Chart(expenses: _expenses),
                     )
                   : const Center(
                       child: Text('No Expanse Avilable ,Add your Expense')))
+        ],
+      ): Row(
+        children: [
+          Expanded(child: Chart(expenses: _expenses)),
+          Expanded(
+              child: _expenses.isNotEmpty
+                  ? ExpenseList(
+                expenses: _expenses,
+                onRemove: removeExpense,
+              )
+                  : const Center(
+                  child: Text('No Expanse Avilable ,Add your Expense')))
         ],
       ),
     );

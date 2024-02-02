@@ -9,11 +9,11 @@ var darkColorSchema =
     ColorScheme.fromSeed(seedColor: Color.fromARGB(255, 5, 99, 125));
 
 void main() {
-  WidgetsFlutterBinding.ensureInitialized();
-  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
-      .then((value) {
+  // WidgetsFlutterBinding.ensureInitialized();
+  // SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
+  //     .then((value) {
     runApp(const MyApp());
-  });
+  // });
 }
 
 class MyApp extends StatelessWidget {
