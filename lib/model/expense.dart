@@ -60,9 +60,8 @@ class ExpenseBucket {
 
     for (final expense in expenses) {
       sum += expense.amount;// sum = sum + expense.amount
-   print("${expense.category}- ${expense.amount}");
     }
-    print(sum);
+
     return sum;
 
   }
